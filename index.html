@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Gesture Jump : Chrome Dino Edition | Thailand x Singapore</title>
+    <meta name="description"
+        content="เกมเร็กซ์ Chrome ไดโนเสาร์เต่าล้านปี (Chrome Dino Runner) ควบคุมด้วยระบบ AI ตรวจจับท่าทางกระโดดผ่านกล้อง Webcam ด้วย Teachable Machine">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="brand-badge">
+            <span class="flags">🇹🇭 🤝 🇵🇭</span>
+            <span>Thailand x Singapore Workshop</span>
+        </div>
+        <h1 class="app-title">
+            <span>🦖 AI CHROME DINO RUNNER</span>
+        </h1>
+        <p class="app-subtitle">
+            เกมกระโดดหลบสิ่งกีดขวางสไตล์ไดโนเสาร์ Chrome สั่งการด้วยระบบ AI Gesture Vision
+            <span class="highlight">กระโดดตัวจริง = ไดโนเสาร์กระโดดในเกม!</span>
+        </p>
+    </header>
+
+    <!-- Main Application Area -->
+    <main class="app-wrapper">
+
+        <!-- Game Stage / Canvas Arena -->
+        <section class="game-card" aria-label="Game Stage">
+
+            <!-- Stage Toolbar -->
+            <div class="stage-toolbar">
+                <div class="stage-status">
+                    <div id="gameStatusPill" class="status-pill">
+                        <span class="status-dot"></span>
+                        <span id="gameStatusText">READY TO PLAY</span>
+                    </div>
+                </div>
+
+                <div class="stage-actions">
+                    <button id="soundToggleBtn" class="icon-btn active" title="Toggle Sound (M)"
+                        aria-label="Toggle Sound">
+                        🔊
+                    </button>
+                    <button id="pauseBtn" class="icon-btn" title="Pause / Resume (P)" aria-label="Pause Game">
+                        ⏸️
+                    </button>
+                    <button id="restartBtn" class="icon-btn" title="Restart Game (R)" aria-label="Restart Game">
+                        🔄
+                    </button>
+                </div>
+            </div>
+
+            <!-- Canvas Viewport -->
+            <div id="canvasContainer" class="canvas-container">
+                <!-- Retro 8-bit Digital Scoreboard -->
+                <div class="hud-overlay">
+                    <span id="hudHiScore" class="hud-hi">HI 00000</span>
+                    <span id="hudScore" class="hud-score">00000</span>
+                </div>
+
+                <!-- Game Canvas -->
+                <canvas id="gameCanvas" width="800" height="250"></canvas>
+            </div>
+
+            <!-- Helpful Touch / Click Hint Banner -->
+            <div class="canvas-hint">
+                <span class="hint-icon">💡</span>
+                <span>กด <b>Spacebar</b> หรือแตะหน้าจอเพื่อกระโดด • หมอบหลบด้วยปุ่มลูกศรลง (↓)</span>
+            </div>
+        </section>
+
+        <!-- Dashboard: Left Controls + Right AI HUD -->
+        <div class="dashboard-grid">
+
+            <!-- Controls & Settings Panel -->
+            <section class="controls-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">
+                        <span>🎮 ควบคุมและเริ่มเกม</span>
+                    </h2>
+                </div>
+
+                <!-- Primary Action Buttons -->
+                <div class="primary-btn-group">
+                    <button id="btnStartAi" class="btn btn-primary" type="button">
+                        🚀 Start Webcam & AI
+                    </button>
+                    <button class="btn btn-secondary" type="button" onclick="handleJump()">
+                        🦘 กระโดด (Jump)
+                    </button>
+                </div>
+
+                <!-- AI Sensitivity Calibration -->
+                <div class="settings-box">
+                    <div class="setting-row">
+                        <label for="sensitivitySlider">
+                            <span>⚡ ความไวในการตรวจจับท่ากระโดด (Sensitivity)</span>
+                        </label>
+                        <span id="sensitivityVal" class="setting-val">75%</span>
+                    </div>
+                    <input id="sensitivitySlider" class="slider-input" type="range" min="50" max="95" value="75"
+                        step="1">
+                </div>
+
+                <!-- Teachable Machine Model URL Configuration -->
+                <div class="model-url-card">
+                    <div class="model-url-header">
+                        <span>🔗 Teachable Machine Model URL:</span>
+                    </div>
+                    <div class="input-with-button">
+                        <input id="modelUrlInput" class="text-input" type="text"
+                            value="https://teachablemachine.withgoogle.com/models/as_xUOVpNm/"
+                            placeholder="วางลิงก์โมเดลของกลุ่มคุณที่นี่..." spellcheck="false">
+                        <button id="btnUpdateModel" class="btn btn-secondary btn-sm" type="button">
+                            เชื่อมต่อใหม่
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Keybindings Cheat Sheet -->
+                <div class="keys-hint-row">
+                    <div class="key-tag">
+                        <span class="key-cap">SPACE</span> / <span class="key-cap">↑</span> กระโดด
+                    </div>
+                    <div class="key-tag">
+                        <span class="key-cap">↓</span> หมอบ / ทิ้งตัว
+                    </div>
+                    <div class="key-tag">
+                        <span class="key-cap">P</span> พักเกม
+                    </div>
+                    <div class="key-tag">
+                        <span class="key-cap">M</span> เปิด/ปิดเสียง
+                    </div>
+                    <div class="key-tag">
+                        <span class="key-cap">R</span> เริ่มใหม่
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Vision & Webcam HUD -->
+            <aside class="ai-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">
+                        <span>👁️ AI Live Vision HUD</span>
+                    </h2>
+                </div>
+
+                <!-- Live Camera Viewport -->
+                <div id="webcamViewport" class="webcam-viewport">
+                    <div id="camHudBadge" class="cam-hud-badge">
+                        <span class="cam-dot"></span> STANDBY
+                    </div>
+
+                    <!-- Webcam Canvas Injected Here -->
+                    <div id="webcam-container" class="webcam-placeholder">
+                        <div class="cam-icon">📷</div>
+                        <div>กดปุ่ม <b>Start Webcam & AI</b><br>เพื่อเปิดกล้องตรวจจับท่าทาง</div>
+                    </div>
+
+                    <!-- Flash Jump Indicator -->
+                    <div id="jumpFlashIndicator" class="jump-flash-indicator">
+                        ⚡ JUMP DETECTED!
+                    </div>
+                </div>
+
+                <!-- Real-time AI Classification Meters -->
+                <div id="meterList" class="ai-meters-container">
+                    <!-- Idle Class Meter -->
+                    <div class="meter-card meter-idle" id="meter_Idle">
+                        <div class="meter-labels">
+                            <span class="meter-class-name">🧍 Idle (ยืนปกติ)</span>
+                            <span class="meter-pct" id="val_Idle">0%</span>
+                        </div>
+                        <div class="meter-bar-track">
+                            <div class="meter-bar-fill" id="bar_Idle" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Jump Class Meter -->
+                    <div class="meter-card meter-jump" id="meter_Jump">
+                        <div class="meter-labels">
+                            <span class="meter-class-name">🦘 Jump (กระโดด)</span>
+                            <span class="meter-pct" id="val_Jump">0%</span>
+                        </div>
+                        <div class="meter-bar-track">
+                            <div class="meter-bar-fill" id="bar_Jump" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Toast Notification Element -->
+    <div id="toastMsg" class="toast-msg"></div>
+
+    <!-- Google Teachable Machine & TensorFlow.js Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
+    <!-- Game Engine & AI Logic -->
+    <script src="game.js"></script>
+</body>
+
+</html>
