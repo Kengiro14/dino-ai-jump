@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Gesture Jump : Chrome Dino Edition | Thailand x Singapore</title>
+    <title>Dino AI Jump : Chrome Runner Edition | AI Gesture Vision</title>
     <meta name="description"
-        content="เกมเร็กซ์ Chrome ไดโนเสาร์เต่าล้านปี (Chrome Dino Runner) ควบคุมด้วยระบบ AI ตรวจจับท่าทางกระโดดผ่านกล้อง Webcam ด้วย Teachable Machine">
+        content="เกมเร็กซ์ Chrome ไดโนเสาร์เต่าล้านปี ควบคุมด้วยระบบ AI ตรวจจับท่าทางกระโดดผ่านกล้อง Webcam ด้วย Teachable Machine สไตล์มินิมอลสีขาวทันสมัย รองรับ 2 ภาษา และโหมดมืด/สว่าง">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Press+Start+2P&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Press+Start+2P&display=swap"
         rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -21,155 +21,184 @@
 
 <body>
 
-    <!-- Header Section -->
+    <!-- Redesigned Modern Minimalist Header: Dual Logos Side-by-Side Without Border, Dual Switch Controls -->
     <header class="app-header">
-        <div class="brand-badge">
-            <span class="flags">🇹🇭 🤝 🇵🇭</span>
-            <span>Thailand x Singapore Workshop</span>
+        <div class="header-inner">
+            <!-- Left: Side-by-Side Dual Partner Logos (Frameless / No Border) -->
+            <div class="brand-partnership-box" title="Institutional Collaboration">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDQ2jAJsXKYUd896yrTJNBBm-zc8E1LGGOkktD7JN28z8_5t_DTuUkpmf6AEgE7LH2oTtjhFSdmP-0f1g-eTAeB2CYtMpxXsHGRnP_VTtqZab8ysWCSSEWlvEjdlecwqZwnJX_PYm3eSPTz3i8wj0UIbAD9LMRElXWE1U5_IfEzpJ0_g130Gg22oYW-4Ff/s320/Class-E.Rapeepat.png"
+                    alt="Class-E Logo" class="brand-logo" loading="lazy">
+                <span class="partnership-separator">✕</span>
+                <img src="https://contents.bu.ac.th/contents/images/mous/6cd0446d-2069-4214-8a0c-c5898e7bd8b5.webp"
+                    alt="BU Partner Logo" class="brand-logo" loading="lazy">
+            </div>
+
+            <!-- Center: App Title & Campaign Badge -->
+            <div class="header-center">
+                <div class="brand-badge">
+                    <span class="badge-dot"></span>
+                    <span id="appBadgeText">AI GESTURE VISION • THAILAND x SINGAPORE</span>
+                </div>
+                <h1 class="app-title">
+                    <span class="dino-emoji">🦖</span>
+                    <span class="title-gradient" id="appTitleText">DINO AI JUMP</span>
+                </h1>
+                <p class="app-subtitle" id="appSubtitleContainer">
+                    <span id="appSubtitleText">เกมวิ่งกระโดดสไตล์ Chrome Dino สั่งการด้วย AI Vision</span>
+                    <span class="highlight" id="appHighlightText">กระโดดตัวจริง = ไดโนเสาร์กระโดด!</span>
+                </p>
+            </div>
+
+            <!-- Right: Switches (Language Switcher & Dark/Light Mode Switcher) -->
+            <div class="header-right-actions">
+                <div class="header-switches">
+                    <!-- Language Switch: TH <-> EN -->
+                    <div class="switch-control" title="สลับภาษา / Switch Language (TH / EN)">
+                        <span class="switch-text-label active" id="langSwitchLabelTh">TH</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="langSwitch" aria-label="Toggle Language TH or EN">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="switch-text-label" id="langSwitchLabelEn">EN</span>
+                    </div>
+
+                    <!-- Theme Switch: Light <-> Dark -->
+                    <div class="switch-control" title="โหมดมืด / โหมดสว่าง (Dark / Light Mode)">
+                        <span class="switch-icon-label active" id="themeIconLight">☀️</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="themeSwitch" aria-label="Toggle Dark or Light Mode">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="switch-icon-label" id="themeIconDark">🌙</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h1 class="app-title">
-            <span>🦖 AI CHROME DINO RUNNER</span>
-        </h1>
-        <p class="app-subtitle">
-            เกมกระโดดหลบสิ่งกีดขวางสไตล์ไดโนเสาร์ Chrome สั่งการด้วยระบบ AI Gesture Vision
-            <span class="highlight">กระโดดตัวจริง = ไดโนเสาร์กระโดดในเกม!</span>
-        </p>
     </header>
 
-    <!-- Main Application Area -->
-    <main class="app-wrapper">
+    <!-- Main 16:9 Arena Container (70% Game Arena, 30% Webcam & Controls) -->
+    <main class="main-container">
+        <section id="arenaContainer" class="arena-container" aria-label="Game & AI Arena">
 
-        <!-- Game Stage / Canvas Arena -->
-        <section class="game-card" aria-label="Game Stage">
+            <!-- ==========================================
+                 LEFT COLUMN (70%): GAME STAGE & CANVAS
+                 ========================================== -->
+            <div class="game-stage-col">
+                <!-- Stage Toolbar (Status, Speed Level, Timer, Sound & Fullscreen) -->
+                <div class="stage-toolbar">
+                    <div class="toolbar-left">
+                        <!-- Game Status Pill -->
+                        <div id="gameStatusPill" class="status-pill ready">
+                            <span class="status-dot"></span>
+                            <span id="gameStatusText">READY</span>
+                        </div>
 
-            <!-- Stage Toolbar -->
-            <div class="stage-toolbar">
-                <div class="stage-status">
-                    <div id="gameStatusPill" class="status-pill">
-                        <span class="status-dot"></span>
-                        <span id="gameStatusText">READY TO PLAY</span>
+                        <!-- 30-sec Speed Level Indicator -->
+                        <div id="levelBadge" class="info-pill pill-level" title="ระดับความเร็ว (เพิ่มทุก 30 วินาที)">
+                            <span class="pill-icon">⚡</span>
+                            <span id="levelText">LEVEL 1</span>
+                        </div>
+
+                        <!-- Round Timer -->
+                        <div id="timerBadge" class="info-pill pill-timer" title="เวลาในรอบปัจจุบัน">
+                            <span class="pill-icon">⏱️</span>
+                            <span id="timerText">00:00</span>
+                        </div>
+
+                        <!-- Next Speed Up Countdown -->
+                        <div id="nextBoostBadge" class="info-pill pill-boost" title="นับถอยหลังสู่การเร่งความเร็วรอบถัดไป">
+                            <span class="pill-icon">🚀</span>
+                            <span id="nextBoostText">Next: 30s</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="stage-actions">
-                    <button id="soundToggleBtn" class="icon-btn active" title="Toggle Sound (M)"
-                        aria-label="Toggle Sound">
-                        🔊
-                    </button>
-                    <button id="pauseBtn" class="icon-btn" title="Pause / Resume (P)" aria-label="Pause Game">
-                        ⏸️
-                    </button>
-                    <button id="restartBtn" class="icon-btn" title="Restart Game (R)" aria-label="Restart Game">
-                        🔄
-                    </button>
-                </div>
-            </div>
-
-            <!-- Canvas Viewport -->
-            <div id="canvasContainer" class="canvas-container">
-                <!-- Retro 8-bit Digital Scoreboard -->
-                <div class="hud-overlay">
-                    <span id="hudHiScore" class="hud-hi">HI 00000</span>
-                    <span id="hudScore" class="hud-score">00000</span>
-                </div>
-
-                <!-- Game Canvas -->
-                <canvas id="gameCanvas" width="800" height="250"></canvas>
-            </div>
-
-            <!-- Helpful Touch / Click Hint Banner -->
-            <div class="canvas-hint">
-                <span class="hint-icon">💡</span>
-                <span>กด <b>Spacebar</b> หรือแตะหน้าจอเพื่อกระโดด • หมอบหลบด้วยปุ่มลูกศรลง (↓)</span>
-            </div>
-        </section>
-
-        <!-- Dashboard: Left Controls + Right AI HUD -->
-        <div class="dashboard-grid">
-
-            <!-- Controls & Settings Panel -->
-            <section class="controls-panel">
-                <div class="panel-header">
-                    <h2 class="panel-title">
-                        <span>🎮 ควบคุมและเริ่มเกม</span>
-                    </h2>
-                </div>
-
-                <!-- Primary Action Buttons -->
-                <div class="primary-btn-group">
-                    <button id="btnStartAi" class="btn btn-primary" type="button">
-                        🚀 Start Webcam & AI
-                    </button>
-                    <button class="btn btn-secondary" type="button" onclick="handleJump()">
-                        🦘 กระโดด (Jump)
-                    </button>
-                </div>
-
-                <!-- AI Sensitivity Calibration -->
-                <div class="settings-box">
-                    <div class="setting-row">
-                        <label for="sensitivitySlider">
-                            <span>⚡ ความไวในการตรวจจับท่ากระโดด (Sensitivity)</span>
-                        </label>
-                        <span id="sensitivityVal" class="setting-val">75%</span>
-                    </div>
-                    <input id="sensitivitySlider" class="slider-input" type="range" min="50" max="95" value="75"
-                        step="1">
-                </div>
-
-                <!-- Teachable Machine Model URL Configuration -->
-                <div class="model-url-card">
-                    <div class="model-url-header">
-                        <span>🔗 Teachable Machine Model URL:</span>
-                    </div>
-                    <div class="input-with-button">
-                        <input id="modelUrlInput" class="text-input" type="text"
-                            value="https://teachablemachine.withgoogle.com/models/as_xUOVpNm/"
-                            placeholder="วางลิงก์โมเดลของกลุ่มคุณที่นี่..." spellcheck="false">
-                        <button id="btnUpdateModel" class="btn btn-secondary btn-sm" type="button">
-                            เชื่อมต่อใหม่
+                    <div class="toolbar-right">
+                        <!-- Sound Toggle -->
+                        <button id="soundToggleBtn" class="icon-btn active" title="เปิด/ปิดเสียง (M)"
+                            aria-label="Toggle Sound">
+                            🔊
+                        </button>
+                        <!-- Fullscreen Toggle -->
+                        <button id="fullscreenBtn" class="icon-btn highlight-btn" title="ขยายเต็มหน้าจอ (16:9 Fullscreen)"
+                            aria-label="Toggle Fullscreen">
+                            ⛶
                         </button>
                     </div>
                 </div>
 
-                <!-- Keybindings Cheat Sheet -->
-                <div class="keys-hint-row">
-                    <div class="key-tag">
-                        <span class="key-cap">SPACE</span> / <span class="key-cap">↑</span> กระโดด
+                <!-- Canvas Viewport -->
+                <div id="canvasContainer" class="canvas-container">
+                    <!-- Retro Digital Scoreboard & Player HUD Overlay -->
+                    <div class="hud-overlay">
+                        <div class="hud-player-tag">
+                            <span class="player-icon">👤</span>
+                            <span id="hudPlayerName">Player 1</span>
+                        </div>
+                        <div class="hud-scores">
+                            <span id="hudHiScore" class="hud-hi">HI 00000</span>
+                            <span id="hudScore" class="hud-score">00000</span>
+                        </div>
                     </div>
-                    <div class="key-tag">
-                        <span class="key-cap">↓</span> หมอบ / ทิ้งตัว
+
+                    <!-- Level-Up Visual Announcement Flash -->
+                    <div id="levelUpBanner" class="levelup-banner">
+                        <span class="levelup-icon">⚡</span>
+                        <span id="levelUpBannerText">SPEED UP! LEVEL 2</span>
                     </div>
-                    <div class="key-tag">
-                        <span class="key-cap">P</span> พักเกม
+
+                    <!-- Authentic Pixel Canvas -->
+                    <canvas id="gameCanvas" width="800" height="260"></canvas>
+                </div>
+
+                <!-- Canvas Hint & Keybindings Bar (Removed Speed Increase Notice as requested) -->
+                <div class="stage-footer-hints">
+                    <div class="hint-item">
+                        <span class="key-cap">SPACE</span> / <span class="key-cap">↑</span> <span id="hintSpaceText">กระโดด</span>
                     </div>
-                    <div class="key-tag">
-                        <span class="key-cap">M</span> เปิด/ปิดเสียง
+                    <div class="hint-item">
+                        <span class="key-cap">↓</span> <span id="hintDuckText">หมอบหลบ</span>
                     </div>
-                    <div class="key-tag">
-                        <span class="key-cap">R</span> เริ่มใหม่
+                    <div class="hint-item">
+                        <span class="key-cap">P</span> <span id="hintPauseText">หยุดชั่วคราว</span>
+                    </div>
+                    <div class="hint-item">
+                        <span class="key-cap">M</span> <span id="hintSoundText">เปิด/ปิดเสียง</span>
+                    </div>
+                    <div class="hint-item">
+                        <span class="key-cap">R</span> <span id="hintRestartText">เริ่มใหม่</span>
+                    </div>
+                    <div class="hint-item">
+                        <span class="key-cap">F</span> <span id="hintFullscreenText">เต็มหน้าจอ</span>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- AI Vision & Webcam HUD -->
-            <aside class="ai-panel">
-                <div class="panel-header">
-                    <h2 class="panel-title">
-                        <span>👁️ AI Live Vision HUD</span>
+            <!-- ==========================================
+                 RIGHT COLUMN (30%): WEBCAM & AI CONTROLS
+                 ========================================== -->
+            <div class="webcam-controls-col">
+                <!-- Panel Header -->
+                <div class="col-header">
+                    <h2 class="col-title">
+                        <span class="col-icon">👁️</span>
+                        <span id="aiColTitleText">AI Vision & Control</span>
                     </h2>
+                    <span id="camFpsBadge" class="fps-badge">AI 30 FPS</span>
                 </div>
 
-                <!-- Live Camera Viewport -->
+                <!-- Live Camera Viewport (Expanded 16:9 Aspect Ratio) -->
                 <div id="webcamViewport" class="webcam-viewport">
                     <div id="camHudBadge" class="cam-hud-badge">
-                        <span class="cam-dot"></span> STANDBY
+                        <span class="cam-dot"></span>
+                        <span id="camStatusText">STANDBY</span>
                     </div>
 
-                    <!-- Webcam Canvas Injected Here -->
+                    <!-- Webcam Canvas injected here -->
                     <div id="webcam-container" class="webcam-placeholder">
                         <div class="cam-icon">📷</div>
-                        <div>กดปุ่ม <b>Start Webcam & AI</b><br>เพื่อเปิดกล้องตรวจจับท่าทาง</div>
+                        <div class="cam-prompt" id="camPromptText">
+                            คลิกปุ่ม <b>Start Webcam & AI</b><br>เพื่อเปิดกล้องตรวจจับท่าทาง
+                        </div>
                     </div>
 
                     <!-- Flash Jump Indicator -->
@@ -178,12 +207,11 @@
                     </div>
                 </div>
 
-                <!-- Real-time AI Classification Meters -->
+                <!-- AI Confidence Meters: Updated to "แสดงท่าทางเพื่อวิ่ง" and "แสดงท่าทางเพื่อกระโดด" -->
                 <div id="meterList" class="ai-meters-container">
-                    <!-- Idle Class Meter -->
                     <div class="meter-card meter-idle" id="meter_Idle">
                         <div class="meter-labels">
-                            <span class="meter-class-name">🧍 Idle (ยืนปกติ)</span>
+                            <span class="meter-class-name" id="meterName_Idle">🧍 แสดงท่าทางเพื่อวิ่ง</span>
                             <span class="meter-pct" id="val_Idle">0%</span>
                         </div>
                         <div class="meter-bar-track">
@@ -191,10 +219,9 @@
                         </div>
                     </div>
 
-                    <!-- Jump Class Meter -->
                     <div class="meter-card meter-jump" id="meter_Jump">
                         <div class="meter-labels">
-                            <span class="meter-class-name">🦘 Jump (กระโดด)</span>
+                            <span class="meter-class-name" id="meterName_Jump">🦘 แสดงท่าทางเพื่อกระโดด</span>
                             <span class="meter-pct" id="val_Jump">0%</span>
                         </div>
                         <div class="meter-bar-track">
@@ -202,10 +229,227 @@
                         </div>
                     </div>
                 </div>
-            </aside>
 
-        </div>
+                <!-- Primary Action Buttons: Row 1 (Start AI & Jump) -->
+                <div class="action-btn-group">
+                    <button id="btnStartAi" class="btn btn-primary" type="button">
+                        <span class="btn-icon">🚀</span>
+                        <span id="btnStartAiText">Start Webcam & AI</span>
+                    </button>
+                    <button id="btnJumpManual" class="btn btn-secondary" type="button" onclick="handleJump()">
+                        <span class="btn-icon">🦘</span>
+                        <span id="btnJumpManualText">กระโดด (Jump)</span>
+                    </button>
+                </div>
+
+                <!-- Game Flow Buttons: Row 2 (Pause/Resume & Restart) -->
+                <div class="game-control-btn-group">
+                    <button id="pauseBtn" class="btn btn-control-pause" type="button" title="พัก / เล่นต่อ (P)">
+                        <span class="btn-icon" id="pauseBtnIcon">⏸️</span>
+                        <span id="pauseBtnText">พักเกม</span>
+                    </button>
+                    <button id="restartBtn" class="btn btn-control-restart" type="button" title="เริ่มเกมใหม่ (R)">
+                        <span class="btn-icon">🔄</span>
+                        <span id="restartBtnText">เริ่มใหม่</span>
+                    </button>
+                </div>
+
+                <!-- Current Active Player Dropdown Selector (Player 1 - 10) -->
+                <div class="active-player-card">
+                    <div class="active-player-row">
+                        <label for="playerSelect" class="label" id="activePlayerLabelText">ผู้เล่นปัจจุบัน:</label>
+                        <div class="player-select-wrapper">
+                            <select id="playerSelect" class="player-select" aria-label="Select Player 1-10">
+                                <option value="Player 1">Player 1</option>
+                                <option value="Player 2">Player 2</option>
+                                <option value="Player 3">Player 3</option>
+                                <option value="Player 4">Player 4</option>
+                                <option value="Player 5">Player 5</option>
+                                <option value="Player 6">Player 6</option>
+                                <option value="Player 7">Player 7</option>
+                                <option value="Player 8">Player 8</option>
+                                <option value="Player 9">Player 9</option>
+                                <option value="Player 10">Player 10</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Sensitivity Calibration Slider -->
+                <div class="settings-box">
+                    <div class="setting-row">
+                        <label for="sensitivitySlider" id="sensitivityLabelText">
+                            <span>⚡ ความไว AI (Sensitivity):</span>
+                        </label>
+                        <span id="sensitivityVal" class="setting-val">75%</span>
+                    </div>
+                    <input id="sensitivitySlider" class="slider-input" type="range" min="50" max="95" value="75"
+                        step="1">
+                </div>
+
+                <!-- Collapsible Teachable Machine Model URL Drawer -->
+                <details class="model-accordion">
+                    <summary class="model-summary">
+                        <span id="modelSummaryText">🔗 ตั้งค่า Teachable Machine Model</span>
+                        <span class="summary-arrow">▾</span>
+                    </summary>
+                    <div class="model-url-card">
+                        <div class="input-with-button">
+                            <input id="modelUrlInput" class="text-input" type="text"
+                                value="https://teachablemachine.withgoogle.com/models/as_xUOVpNm/"
+                                placeholder="วาง URL โมเดล Teachable Machine..." spellcheck="false">
+                            <button id="btnUpdateModel" class="btn btn-secondary btn-sm" type="button">
+                                <span id="btnUpdateModelText">เชื่อมต่อ</span>
+                            </button>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SCOREBOARD & TEMPORARY SESSION RECORDS
+             ========================================== -->
+        <section class="scoreboard-section" aria-label="Session Scoreboard">
+            <!-- Section Header -->
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">
+                        <span id="scoreboardTitleText">📊 ตารางบันทึกคะแนนและสถิติ (Scoreboard)</span>
+                    </h2>
+                    <p class="section-subtitle" id="scoreboardSubtitleText">
+                        เก็บบันทึกคะแนนแต่ละรอบ รวมคะแนนรายบุคคลและคะแนนรวมทั้งหมด (บันทึกชั่วคราวในรอบเซสชัน รีเซ็ตเมื่อรีเฟรชหน้าเว็บ)
+                    </p>
+                </div>
+                <button id="btnClearRecords" class="btn btn-outline-danger" type="button"
+                    title="ล้างข้อมูลประวัติรอบนี้">
+                    <span id="btnClearRecordsText">🗑️ ล้างประวัติทั้งหมด</span>
+                </button>
+            </div>
+
+            <!-- Summary KPI Metric Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon gold">🏆</div>
+                    <div class="metric-info">
+                        <span class="metric-label" id="kpiHighScoreLabel">คะแนนสูงสุดในเซสชัน</span>
+                        <span id="kpiHighScore" class="metric-value">0</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon blue">👥</div>
+                    <div class="metric-info">
+                        <span class="metric-label" id="kpiGrandTotalLabel">คะแนนรวมผู้เล่นทุกคน</span>
+                        <span id="kpiGrandTotal" class="metric-value">0</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon green">🎮</div>
+                    <div class="metric-info">
+                        <span class="metric-label" id="kpiTotalRoundsLabel">จำนวนรอบที่เล่นทั้งหมด</span>
+                        <span id="kpiTotalRounds" class="metric-value">0 รอบ</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon purple">👤</div>
+                    <div class="metric-info">
+                        <span class="metric-label" id="kpiActivePlayerLabel">ผู้เล่นปัจจุบัน</span>
+                        <span id="kpiActivePlayer" class="metric-value highlight-player">Player 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player Management Bar: Dropdown for Player 1-10 & Quick Number Buttons -->
+            <div class="player-management-bar">
+                <div class="player-select-ctrl">
+                    <label for="scoreboardPlayerSelect" class="player-ctrl-label" id="selectPlayerLabelText">
+                        👤 เลือกผู้เล่น (Player 1-10):
+                    </label>
+                    <select id="scoreboardPlayerSelect" class="player-dropdown-select" aria-label="Select Player 1-10">
+                        <option value="Player 1">Player 1</option>
+                        <option value="Player 2">Player 2</option>
+                        <option value="Player 3">Player 3</option>
+                        <option value="Player 4">Player 4</option>
+                        <option value="Player 5">Player 5</option>
+                        <option value="Player 6">Player 6</option>
+                        <option value="Player 7">Player 7</option>
+                        <option value="Player 8">Player 8</option>
+                        <option value="Player 9">Player 9</option>
+                        <option value="Player 10">Player 10</option>
+                    </select>
+                </div>
+                <div class="player-quick-buttons" id="playerQuickButtons">
+                    <!-- Quick Player 1-10 buttons -->
+                </div>
+            </div>
+
+            <!-- Side-by-Side Data Tables: Individual Totals & Round History -->
+            <div class="tables-grid">
+                <!-- Table 1: Individual Player Summary -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title">
+                            <span id="tableIndividualTitleText">👤 สรุปคะแนนรายบุคคล (Individual Totals)</span>
+                        </h3>
+                        <span class="badge badge-subtle" id="playerCountBadge">10 Players</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="modern-table" id="playerSummaryTable">
+                            <thead>
+                                <tr>
+                                    <th id="thPlayer">ผู้เล่น</th>
+                                    <th class="text-center" id="thRounds">จำนวนรอบ</th>
+                                    <th class="text-right" id="thBestScore">คะแนนสูงสุด</th>
+                                    <th class="text-right" id="thTotalScore">คะแนนรวมสะสม</th>
+                                    <th class="text-right" id="thAvgScore">คะแนนเฉลี่ย</th>
+                                    <th class="text-center" id="thStatus">สถานะ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="playerSummaryTableBody">
+                                <!-- Dynamically populated for Player 1-10 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Table 2: Round-by-Round Log -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title">
+                            <span id="tableRoundTitleText">📜 ประวัติการเล่นแต่ละรอบ (Round History)</span>
+                        </h3>
+                        <span class="badge badge-subtle" id="roundCountBadge">0 Rounds</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="modern-table" id="roundHistoryTable">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" id="thRoundNum">รอบที่</th>
+                                    <th id="thRoundPlayer">ผู้เล่น</th>
+                                    <th class="text-right" id="thRoundScore">คะแนนรอบนี้</th>
+                                    <th class="text-center" id="thSpeedLevel">ระดับความเร็ว</th>
+                                    <th class="text-center" id="thSurvivalTime">เวลาที่รอด</th>
+                                    <th class="text-right" id="thTimestamp">เวลาบันทึก</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roundHistoryTableBody">
+                                <tr>
+                                    <td colspan="6" class="empty-state" id="emptyHistoryText">
+                                        ยังไม่มีประวัติการเล่นในเซสชันนี้ — เริ่มเล่นเพื่อบันทึกคะแนนรอบแรก!
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Minimalist Footer -->
+    <footer class="app-footer">
+        <p id="footerText">AI Gesture Dino Jump • Designed for Classroom & Workshop Interactions • Thailand 🇹🇭 x Singapore 🇸🇬</p>
+    </footer>
 
     <!-- Toast Notification Element -->
     <div id="toastMsg" class="toast-msg"></div>
@@ -214,7 +458,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 
-    <!-- Game Engine & AI Logic -->
+    <!-- Game Engine, Audio, Dual Switch Controls & 30s Escalation Logic -->
     <script src="game.js"></script>
 </body>
 
